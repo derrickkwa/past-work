@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Derrick Kwa — Selected Work</title>
+<style>
+  :root{
+    --ink:#0e1116; --body:#2b313b; --muted:#5e6878; --faint:#94a0b0;
+    --line:#e7eaef; --bg:#eef1f6; --card:#ffffff; --soft:#f6f8fb;
+    --indigo:#4f46e5; --indigo-d:#3f37c9; --cyan:#06b6d4; --amber:#d97a16; --amber-soft:#fdf1e3;
+    --grad:linear-gradient(120deg,#4f46e5 0%,#7c3aed 48%,#06b6d4 110%);
+    --accent-soft:#eef0ff;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact; print-color-adjust:exact; scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--body);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 22px;}
+  h1,h2,h3{letter-spacing:-.02em; color:var(--ink); line-height:1.08;}
+
+  /* Sticky nav */
+  nav.bar{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.86); backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);}
+  .bar .wrap{display:flex; align-items:center; justify-content:space-between; height:60px; gap:14px;}
+  .brand{font-weight:800; color:var(--ink); font-size:16px; letter-spacing:-.01em; white-space:nowrap;}
+  .brand span{color:var(--indigo);}
+  .tabs{display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end;}
+  .tab{appearance:none; border:none; background:transparent; cursor:pointer; font:inherit; font-size:13.5px;
+    font-weight:600; color:var(--muted); padding:7px 13px; border-radius:999px; transition:.15s; white-space:nowrap;}
+  .tab:hover{color:var(--ink); background:var(--soft);}
+  .tab.active{color:#fff; background:var(--indigo);}
+
+  /* Panels */
+  .panel{display:none; animation:fade .25s ease;}
+  .panel.active{display:block;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+  /* Hero */
+  .hero{background:var(--grad); color:#fff; border-radius:22px; padding:54px 48px; margin:26px 0 22px;
+    box-shadow:0 24px 60px -28px rgba(79,70,229,.6); position:relative; overflow:hidden;}
+  .hero::after{content:""; position:absolute; right:-90px; top:-90px; width:300px; height:300px;
+    background:radial-gradient(circle,rgba(255,255,255,.22),transparent 70%);}
+  .hero .ey{font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:700; opacity:.8;}
+  .hero h1{color:#fff; font-size:46px; margin:12px 0 16px;}
+  .hero p{font-size:19px; line-height:1.5; max-width:820px; margin:0; color:rgba(255,255,255,.92);}
+  .hero .who{margin-top:22px; font-size:13.5px; color:rgba(255,255,255,.8); display:flex; gap:14px; flex-wrap:wrap;}
+
+  /* Stat strip */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:0 0 26px;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 16px;}
+  .stat .n{font-size:26px; font-weight:800; color:var(--indigo); letter-spacing:-.02em; line-height:1;}
+  .stat .l{font-size:12.5px; color:var(--muted); margin-top:7px; line-height:1.35;}
+
+  /* Operating-system framework */
+  .section-h{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); font-weight:700; margin:30px 0 6px;}
+  h2.big{font-size:27px; margin:0 0 18px;}
+  .moves{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .move{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px 22px; position:relative;}
+  .move .num{font-size:12px; font-weight:800; color:#fff; background:var(--indigo); width:24px; height:24px; border-radius:7px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:11px;}
+  .move h3{font-size:17px; margin:0 0 5px;}
+  .move p{margin:0 0 11px; font-size:13.5px; color:var(--muted);}
+  .move .goto{font-size:12.5px; font-weight:700; color:var(--indigo); cursor:pointer; border:none; background:none; padding:0; font-family:inherit;}
+  .move .goto:hover{text-decoration:underline;}
+
+  /* Example layout */
+  .ex-head{border-left:4px solid var(--indigo); padding-left:18px; margin:26px 0 20px;}
+  .ex-head .tagline{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo); font-weight:700;}
+  .ex-head h2{font-size:30px; margin:8px 0 6px;}
+  .ex-head .sub{font-size:14.5px; color:var(--faint); margin:0; font-style:italic;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:28px 30px; margin-bottom:18px;}
+  .card p{margin:0 0 14px; color:var(--body);}
+  .em{color:var(--ink); font-weight:600;}
+
+  .result{display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; background:var(--accent-soft);
+    border:1px solid #e0e1fb; border-radius:12px; padding:16px 20px; margin:6px 0 20px;}
+  .result .big{font-size:32px; font-weight:800; color:var(--indigo); letter-spacing:-.02em; line-height:1;}
+  .result .desc{font-size:14px; color:#3a3f6b; flex:1; min-width:240px;}
+
+  /* bars */
+  .chart{margin:16px 0 4px;}
+  .bar-row{display:flex; align-items:center; gap:12px; margin:8px 0; font-size:13px;}
+  .bar-label{width:130px; flex:none; color:var(--muted); text-align:right;}
+  .bar-track{flex:1; background:#edf0f5; border-radius:7px; height:28px; overflow:hidden;}
+  .bar-fill{height:100%; border-radius:7px; background:linear-gradient(90deg,#4f46e5,#6366f1); display:flex; align-items:center;
+    justify-content:flex-end; padding-right:10px; color:#fff; font-weight:700; font-size:12.5px;}
+  .bar-fill.muted{background:#c2c9d4;}
+  .bar-fill.amber{background:linear-gradient(90deg,#d97a16,#ef9a3d);}
+  .chart-note{font-size:12px; color:var(--faint); margin-top:9px;}
+
+  /* messaging architecture */
+  .mini-h{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); font-weight:700; margin:6px 0 12px;}
+  .arch{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:0 0 22px;}
+  .pillar{border:1px solid var(--line); border-radius:11px; padding:13px; background:var(--soft);}
+  .pillar .pname{font-weight:700; font-size:13px; color:var(--ink);}
+  .pillar .pdesc{font-size:12px; color:var(--muted); margin-top:3px; line-height:1.4;}
+
+  /* ads */
+  .ads{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:6px 0 2px;}
+  .ad img{width:100%; border:1px solid var(--line); border-radius:11px; display:block; box-shadow:0 6px 18px -8px rgba(14,17,22,.35);}
+  .ad figure{margin:0;}
+  .ad figcaption{margin-top:10px; font-size:12.5px; color:var(--muted); line-height:1.45;}
+  .ad figcaption b{color:var(--indigo); display:block; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:2px;}
+  .credit{font-size:12px; color:var(--faint); margin:16px 0 0; font-style:italic;}
+
+  .placeholder{border:2px dashed #c6cedb; border-radius:12px; padding:30px; text-align:center; color:var(--faint);
+    font-size:13px; background:repeating-linear-gradient(45deg,#fafbfd,#fafbfd 11px,#f2f5f9 11px,#f2f5f9 22px);}
+
+  /* methodology */
+  .method-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:16px 0 18px;}
+  .step{background:var(--soft); border-radius:12px; padding:16px 18px; border:1px solid var(--line);}
+  .step b{font-size:14px; color:var(--ink);}
+  .step span{display:block; font-size:12.5px; color:var(--muted); margin-top:4px;}
+  .pill{display:inline-block; background:var(--accent-soft); color:var(--indigo-d); border-radius:999px;
+    padding:5px 13px; font-size:12.5px; font-weight:700; margin:2px 4px 2px 0;}
+
+  footer{padding:34px 0 60px; text-align:center; color:var(--faint); font-size:13px;}
+  hr.div{border:none; border-top:1px solid var(--line); margin:26px 0;}
+
+  @media (max-width:720px){
+    .stats,.moves,.arch,.method-grid{grid-template-columns:1fr 1fr;}
+    .ads{grid-template-columns:1fr 1fr;}
+    .hero{padding:38px 26px;} .hero h1{font-size:34px;}
+  }
+  @media print{
+    body{background:#fff; font-size:12px;}
+    nav.bar{display:none;}
+    .panel{display:block !important; animation:none;}
+    .panel + .panel{border-top:1px solid var(--line); margin-top:8px; padding-top:8px;}
+    .hero{box-shadow:none; margin:0 0 16px;}
+    .card,.move,.stat{break-inside:avoid;}
+    .ad img,.result{box-shadow:none;}
+    .ex-head{page-break-before:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="bar">
+  <div class="wrap">
+    <div class="brand">Derrick Kwa<span>.</span></div>
+    <div class="tabs">
+      <button class="tab active" data-tab="overview">Overview</button>
+      <button class="tab" data-tab="proptech">PropTech</button>
+      <button class="tab" data-tab="b2bsaas">B2B SaaS</button>
+      <button class="tab" data-tab="facilities">Facilities</button>
+      <button class="tab" data-tab="dtcsupp">DTC Supplements</button>
+      <button class="tab" data-tab="dtcbeauty">DTC Beauty</button>
+      <button class="tab" data-tab="esl">ESL Calculator</button>
+      <button class="tab" data-tab="method">Market Research</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  
+  <section class="panel active" id="overview">
+    <div class="hero">
+      <div class="ey">Selected Work</div>
+      <h1>I start with the market, not "best practices."</h1>
+      <p>Find where the real leverage is. Point positioning and creative at it. Then measure what's <em>actually</em> working, not what the platform claims credit for.</p>
+      <p style="font-size:15.5px; margin-top:14px; color:rgba(255,255,255,.85);">I started as the only marketer for early-stage founders, doing everything from content and paid to email and CRO, before moving into agency strategy across a portfolio of B2B SaaS and growth brands. My edge is the blend of hard data and human behavior. The client work is in the tabs above.</p>
+      <div class="who"><span>Account Strategy &amp; Performance</span><span>·</span><span>derrickkwa.com</span><span>·</span><span>suigeneris@derrickkwa.com</span></div>
+    </div>
+
+    <div class="section-h">Selected results</div>
+    <div class="stats">
+      <div class="stat"><div class="n">+40%</div><div class="l">YoY inbound customers · B2B SaaS (concussion testing)</div></div>
+      <div class="stat"><div class="n">~$350k</div><div class="l">qualified pipeline, first quarter · B2B services (0→1 build)</div></div>
+      <div class="stat"><div class="n">2 records</div><div class="l">biggest agreement months · B2B2C PropTech, demand creation</div></div>
+      <div class="stat"><div class="n">Top ad</div><div class="l">Q4 winner surfaced from a holdout test · DTC supplements</div></div>
+    </div>
+
+    <div class="section-h">How I think about marketing</div>
+    <h2 class="big">Four principles behind the work</h2>
+    <div class="moves">
+      <div class="move"><div class="num">1</div><h3>Start with the market</h3><p>An AI-driven research pipeline finds the real leverage before a dollar is spent: category demand, share of search, the language buyers use.</p><button class="goto" data-goto="method">See the agency-wide system →</button></div>
+      <div class="move"><div class="num">2</div><h3>Position to create demand</h3><p>Even in a category with no felt pain, the job is to <em>build</em> demand: make the old way feel obsolete rather than agitate a problem buyers don't know they have.</p><button class="goto" data-goto="proptech">See the PropTech play →</button></div>
+      <div class="move"><div class="num">3</div><h3>Execute &amp; measure what's real</h3><p>Multi-channel execution held to backend outcomes and multitouch truth, not platform-reported ROAS. Built from scratch when it has to be.</p><button class="goto" data-goto="b2bsaas">See the B2B builds →</button></div>
+      <div class="move"><div class="num">4</div><h3>Experiment honestly</h3><p>Run real holdout and landing-page tests, form sharp hypotheses, and accept the answer even when it's null. Then harvest the upside the test surfaces along the way.</p><button class="goto" data-goto="dtcsupp">See the DTC experiments →</button></div>
+    </div>
+
+    <div class="section-h">Common tactics</div>
+    <h2 class="big">What I actually do</h2>
+    <div class="method-grid">
+      <div style="background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px;">
+        <b style="font-size:14px; color:var(--ink);">Research &amp; positioning</b>
+        <div style="margin-top:9px;"><span class="pill">Market-intelligence briefs</span><span class="pill">Share-of-search</span><span class="pill">Demand sizing</span><span class="pill">Messaging architecture</span><span class="pill">Persona &amp; VoC</span></div>
+      </div>
+      <div style="background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px;">
+        <b style="font-size:14px; color:var(--ink);">Multi-channel paid</b>
+        <div style="margin-top:9px;"><span class="pill">Meta</span><span class="pill">Google</span><span class="pill">LinkedIn</span><span class="pill">Bing</span><span class="pill">Demand-gen campaigns</span></div>
+      </div>
+      <div style="background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px;">
+        <b style="font-size:14px; color:var(--ink);">Measurement</b>
+        <div style="margin-top:9px;"><span class="pill">Multitouch attribution</span><span class="pill">Incrementality &amp; geo holdouts</span><span class="pill">Blended MER · CAC · contribution</span><span class="pill">Attribution-window analysis</span></div>
+      </div>
+      <div style="background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px;">
+        <b style="font-size:14px; color:var(--ink);">Conversion &amp; creative</b>
+        <div style="margin-top:9px;"><span class="pill">CRO &amp; message-match testing</span><span class="pill">Creative testing systems</span><span class="pill">Lead-quality &gt; volume</span><span class="pill">HubSpot MQL/SQL funnels</span></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="panel" id="proptech">
+    <div class="ex-head">
+      <div class="tagline">Move 2 · Position to create demand</div>
+      <h2>B2B2C PropTech</h2>
+      <p class="sub">B2B2C PropTech: pest control repositioned as a revenue amenity. Took over post-$28M raise; scaled spend ~2.5×.</p>
+    </div>
+    <div class="card">
+      <p>The hard part: the category had <span class="em">no active pain</span>. Property managers weren't searching for a fix because they didn't know one existed, the same way no one searched for a smartphone while they still had a flip phone. So rather than agitate a pain point, we <span class="em">built demand</span>: aspirational, attention-led creative that makes manual pest control feel obsolete, plus early-stage lead magnets to capture interest before buyers were in-market. I also widened the channel mix beyond Meta, adding Bing and a dedicated property-management-conference campaign to reach more of the buyer base.</p>
+      <div class="result"><span class="big">+33%</span><span class="desc">over the account's all-time best month. March and April became its first two double-digit months for signed agreements (a record 6 inbound in March), against a 2025 that never broke 9. Demand and cost-efficiency climbed together as spend scaled ~2.5×.</span></div>
+      <div class="chart">
+        <div class="bar-row"><div class="bar-label">2025 best month</div><div class="bar-track"><div class="bar-fill muted" style="width:75%;">9</div></div></div>
+        <div class="bar-row"><div class="bar-label">March 2026</div><div class="bar-track"><div class="bar-fill amber" style="width:100%;">12</div></div></div>
+        <div class="bar-row"><div class="bar-label">April 2026</div><div class="bar-track"><div class="bar-fill amber" style="width:83%;">10</div></div></div>
+        <div class="chart-note">Signed agreements per month. No 2025 month reached double digits.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="mini-h">The messaging architecture I built</div>
+      <div class="arch">
+        <div class="pillar"><div class="pname">The New Default</div><div class="pdesc">"Old way" metaphors that frame manual pest control as an anachronism.</div></div>
+        <div class="pillar"><div class="pname">Fear → Relief</div><div class="pdesc">A bad review or a lost resident; the amenity is the fix.</div></div>
+        <div class="pillar"><div class="pname">Effortless by Design</div><div class="pdesc">Get the coordination burden off the PM's plate entirely.</div></div>
+        <div class="pillar"><div class="pname">NOI Math</div><div class="pdesc">Reframe a cost center as +$60/door in recurring revenue.</div></div>
+      </div>
+      <div class="placeholder">Ad creatives (the "old-way" boiler-room and elevator-operator concepts, the churn/amenity angle, the NOI before/after) shared on request. Concepts I developed and briefed; produced with the creative team.</div>
+    </div>
+  </section>
+
+  
+  <section class="panel" id="b2bsaas">
+    <div class="ex-head">
+      <div class="tagline">Move 3 · Execute &amp; measure what's real</div>
+      <h2>B2B SaaS, concussion &amp; balance testing</h2>
+      <p class="sub">B2B SaaS, concussion &amp; balance testing (since acquired). A long, highly seasonal cycle, fall sports.</p>
+    </div>
+    <div class="card">
+      <p>Because the category is so seasonal, I judge the account on full-year, year-over-year, <span class="em">inbound-only</span> numbers, which isolate what marketing drove from the sales team's outbound. What made the growth real rather than seasonal: I optimized to <span class="em">backend closed-won</span>, not front-end signups, and built a <span class="em">"Meta-Influenced Google Traffic"</span> signal to measure the cross-channel halo. It showed Meta was seeding branded search, not just driving last-click conversions. The multitouch picture, instrumented.</p>
+      <ul style="margin:2px 0 18px; padding-left:20px; color:var(--body);">
+        <li style="margin-bottom:8px;"><b>Built a growth model first:</b> pinpointed the real bottleneck (website-visits → deals-created) and prioritized tracking and landing pages there, rather than just spending more.</li>
+        <li style="margin-bottom:8px;"><b>Competitor-targeted Search</b> against the incumbent, with custom head-to-head comparison landing pages.</li>
+        <li style="margin-bottom:8px;"><b>Full multi-channel mix</b> (Search, Meta, LinkedIn and Bing), each held to cost-per-deal-created, not platform-reported ROAS.</li>
+        <li><b>Lead magnets, free CEU offers, and email nurture</b> to capture and warm earlier-stage demand through a long sales cycle.</li>
+      </ul>
+      <div class="result"><span class="big">+40% YoY</span><span class="desc">inbound-sourced customers (217 → 305, full year), August peak up ~90%, while scaling paid spend severalfold and holding acquisition cost efficient.</span></div>
+      <div class="chart">
+        <div class="bar-row"><div class="bar-label">2024 inbound</div><div class="bar-track"><div class="bar-fill muted" style="width:71%;">217</div></div></div>
+        <div class="bar-row"><div class="bar-label">2025 inbound</div><div class="bar-track"><div class="bar-fill" style="width:100%;">305</div></div></div>
+        <div class="chart-note">Inbound-sourced customers, full year. Peak month (August): 40 → 76, +90% YoY.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="mini-h">Brand awareness — the second-order win</div>
+      <p>The point of building the "Meta-Influenced Google Traffic" signal was to test whether paid was <span class="em">creating</span> demand, not just harvesting it. It was. As we scaled and Meta seeded Google searches, the brand's <span class="em">branded search volume stepped up sharply year-over-year</span>: August grew +50% (5,400 to 8,100). Its <span class="em">share of search against the category leader</span> climbed to a sustained ~28–29% in H2 2025, its high for the period, from the high-teens/low-20s before. And it stuck: branded search held elevated into early 2026 (still ~+20% YoY through Q1) before normalizing in the off-season.</p>
+      <img src="assets/brand-search.png" alt="Branded search volume and ad-influenced search over time" style="width:100%; border:1px solid var(--line); border-radius:11px; display:block; margin-top:6px;">
+      <p class="chart-note" style="margin-top:10px;">Branded search volume (line) vs. ad-influenced Google visits (bars). Year-over-year framing isolates the lift from the category's fall-sports seasonality. Search data via DataForSEO, through 2026.</p>
+    </div>
+  </section>
+
+  
+  <section class="panel" id="facilities">
+    <div class="ex-head">
+      <div class="tagline">Move 3 · Execute &amp; measure what's real</div>
+      <h2>B2B commercial facilities services</h2>
+      <p class="sub">B2B commercial facilities services: a demand engine built from zero.</p>
+    </div>
+    <div class="card">
+      <p>A brand-new account with nothing live. I built and launched the site and a <span class="em">landing page per service line</span> (janitorial, snow &amp; ice, asphalt, landscaping), then ran a <span class="em">lead-quality-over-volume</span> playbook. The specific moves:</p>
+      <ul style="margin:2px 0 18px; padding-left:20px; color:var(--body);">
+        <li style="margin-bottom:9px;"><b>Disqualified residential demand at the source:</b> commercial-intent targeting and landing pages built to screen out vendors and homeowners, so spend only chased contracts worth winning.</li>
+        <li style="margin-bottom:9px;"><b>Rebuilt campaigns around proven intent:</b> relaunched landscaping around "parking lot" search terms pulled from historical data, with an aggressive negative-keyword list.</li>
+        <li style="margin-bottom:9px;"><b>Retrained Google's bidding:</b> switched the optimization goal to qualified leads and fed the algorithm clean signal by stripping bad-lead conversions out of the feedback loop.</li>
+        <li style="margin-bottom:9px;"><b>Built the HubSpot funnel:</b> defined and automated MQL/SQL stages so we optimized to <em>pipeline quality</em>, not raw form fills.</li>
+        <li><b>Reallocated by geography &amp; service:</b> cut the high-CPA regions and leaned into the efficient ones; snow &amp; ice and janitorial carried the lowest cost-per-lead.</li>
+      </ul>
+      <div class="result"><span class="big">~$350k</span><span class="desc">in qualified pipeline generated in the first quarter live, on ~$11k of ad spend, while cutting cost-per-lead ~80–90%.</span></div>
+      <div class="chart">
+        <div class="bar-row"><div class="bar-label">Nov '24 (launch)</div><div class="bar-track"><div class="bar-fill muted" style="width:100%;">$1,554</div></div></div>
+        <div class="bar-row"><div class="bar-label">Dec '24</div><div class="bar-track"><div class="bar-fill muted" style="width:21%;">$321</div></div></div>
+        <div class="bar-row"><div class="bar-label">Late Dec '24</div><div class="bar-track"><div class="bar-fill" style="width:10%;">$153</div></div></div>
+        <div class="bar-row"><div class="bar-label">Q1 '25 (stable)</div><div class="bar-track"><div class="bar-fill" style="width:8%;">~$120</div></div></div>
+        <div class="chart-note">Cost per lead, weekly: from four figures at launch to ~$120 once commercial-intent targeting matured.</div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="panel" id="dtcsupp">
+    <div class="ex-head">
+      <div class="tagline">Move 4 · Experiment honestly</div>
+      <h2>DTC supplements brand</h2>
+      <p class="sub">DTC supplements, scaled ~$30k → $60k/month. The growth ceiling: reaching new audiences.</p>
+    </div>
+    <div class="card">
+      <p>My challenge here was reaching <span class="em">new audiences</span>, which meant measurement had to be honest about what new spend was really doing. It was one of the first accounts where I ran <span class="em">TripleWhale</span>, and I made calls on first-touch attribution over last-touch, always reading first-vs-last together to tell the creatives that drive discovery from the ones that just close demand we already had. I also tested Meta's <span class="em">incremental-attribution</span> setting here, which drove decent results.</p>
+      <div class="mini-h">The reach experiment</div>
+      <ul style="margin:2px 0 18px; padding-left:20px; color:var(--body);">
+        <li style="margin-bottom:8px;"><b>Matched control vs. test DMAs</b> on baseline revenue and MER, so the only variable was the upper-funnel objective.</li>
+        <li style="margin-bottom:8px;"><b>Tested two objectives in sequence</b> (page-engagement, then a Google-traffic signal), measured with F- and T-tests over multi-week windows.</li>
+        <li style="margin-bottom:8px;"><b>Result came back inconclusive</b> (no statistically significant lift), so I killed the campaign instead of rationalizing it.</li>
+        <li><b>Mined the test for creative signal:</b> promoted the winners it surfaced into the core purchase campaigns.</li>
+      </ul>
+      <div class="result"><span class="big">Q4 winner</span><span class="desc">One creative the test surfaced, a dormant founder-voice organic post explaining why she built the product, became one of our best-performing ads. We ran it regularly across Q4.</span></div>
+      <div class="placeholder">The winning creative, a founder-voice organic post repurposed as a paid ad and run across Q4, shared on request.</div>
+    </div>
+  </section>
+
+  
+  <section class="panel" id="dtcbeauty">
+    <div class="ex-head">
+      <div class="tagline">Move 4 · Experiment honestly</div>
+      <h2>DTC beauty (customizable palettes)</h2>
+      <p class="sub">DTC, customizable beauty palettes (UK startup). Turning good clicks into purchases.</p>
+    </div>
+    <div class="card">
+      <p>The ads worked (good CPCs on Google), but only ~1.5% of clicks converted. We ran <span class="em">single-keyword-intent ad groups</span> ("design your own palette," "create your own palette," "customize…"), each with copy matched to the search term. The catch: no matter which ad they clicked, everyone landed on the same generic "Customizable makeup palettes" homepage.</p>
+      <p>The insight: <span class="em">if matching ad copy to the keyword is best practice, why stop at the click?</span> In VWO, I built UTM-driven personalized homepage variants: the headline and every CTA button swapped to mirror the ad ("Design," "Create," "Customize"), so the message carried unbroken from search term to ad to landing page.</p>
+      <div class="result"><span class="big">+90%</span><span class="desc">lift in Google Ads conversion rate (1.5% → 2.86%) within a month of carrying the ad's message all the way through to the landing page.</span></div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin:2px 0 16px;">
+        <div style="flex:1; min-width:110px; background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:14px;"><div style="font-size:22px; font-weight:800; color:var(--indigo); line-height:1;">−10%</div><div style="font-size:11.5px; color:var(--muted); margin-top:5px;">cost per acquisition</div></div>
+        <div style="flex:1; min-width:110px; background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:14px;"><div style="font-size:22px; font-weight:800; color:var(--indigo); line-height:1;">+28.9%</div><div style="font-size:11.5px; color:var(--muted); margin-top:5px;">average order value</div></div>
+        <div style="flex:1; min-width:110px; background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:14px;"><div style="font-size:22px; font-weight:800; color:var(--indigo); line-height:1;">up to 4×</div><div style="font-size:11.5px; color:var(--muted); margin-top:5px;">CR on best matched pages</div></div>
+      </div>
+      <div class="chart">
+        <div class="bar-row"><div class="bar-label">Generic homepage</div><div class="bar-track"><div class="bar-fill muted" style="width:52%;">1.5%</div></div></div>
+        <div class="bar-row"><div class="bar-label">Message-matched</div><div class="bar-track"><div class="bar-fill" style="width:100%;">2.86%</div></div></div>
+        <div class="chart-note">Google Ads conversion rate. Congruency carried from search term to ad to landing page (VWO, UTM-driven).</div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="panel" id="esl">
+    <div class="ex-head">
+      <div class="tagline">Move 4 · Experiment honestly</div>
+      <h2>ESL lead-gen calculator</h2>
+      <p class="sub">A language school selling English courses to students planning a move to Canada. A "how much more could you earn?" calculator as the lead magnet.</p>
+    </div>
+    <div class="card">
+      <p>The hook was an earnings calculator: enter your salary, age, and country, and it estimated how much more you'd make after learning English. Clicks were cheap (~$0.04 CPC), but the calculator converted at just 0.24%, a CPL of $17.09, well below where it needed to be. I believed in the concept, so I set out to fix the page rather than scrap it.</p>
+      <div class="mini-h">How I cracked it</div>
+      <ul style="margin:2px 0 18px; padding-left:20px; color:var(--body);">
+        <li style="margin-bottom:8px;"><b>Diagnosed with session recordings</b> (Microsoft Clarity): people were starting the calculator and abandoning it partway. First hypothesis: the form was too long.</li>
+        <li style="margin-bottom:8px;"><b>Tested a 2-page form vs. the original.</b> Both improved, but the gain was Google's algorithm learning, not the test; the 2-page edge (1.5% vs. 1.3%) wasn't statistically significant, so I didn't bank it.</li>
+        <li style="margin-bottom:8px;"><b>Found the real friction:</b> the salary question. For a cold lead magnet, asking income up front felt too intrusive.</li>
+        <li><b>Rebuilt the calculator</b> to ask only country and age, using an average-salary baseline for the math. One less field, far less intrusive.</li>
+      </ul>
+      <div class="result"><span class="big">+202%</span><span class="desc">conversion rate after removing the salary field (more than triple), with CPL down 56%. The win came from a sharper hypothesis, not the obvious form-length fix.</span></div>
+    </div>
+  </section>
+
+  
+  <section class="panel" id="method">
+    <div class="ex-head">
+      <div class="tagline">Beyond the accounts · Agency impact</div>
+      <h2>The market-research system</h2>
+      <p class="sub">Something I built that changed how the whole agency does strategy.</p>
+    </div>
+    <div class="card">
+      <p>Good strategy starts with the market, not the channel. But research was the slowest, most inconsistent part of every engagement. So I built an <span class="em">AI-driven research pipeline</span> that turns raw market signals into a deep intelligence brief: category demand and growth, share of search vs. competitors, demand trends, audience and voice-of-customer, and a competitive messaging map. What took weeks of manual work became a repeatable system that produces a ~200-page brief and points straight at the leverage.</p>
+
+      <div style="display:flex; align-items:stretch; flex-wrap:wrap; gap:6px; margin:10px 0 20px;">
+        <div style="flex:1; min-width:118px; background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:12px; text-align:center; font-weight:700; font-size:12.5px; color:var(--ink);">Market signals<span style="display:block; font-weight:400; font-size:10.5px; color:var(--muted); margin-top:4px;">search · reviews · competitors · VoC</span></div>
+        <div style="display:flex; align-items:center; color:var(--faint); font-size:17px; padding:0 2px;">→</div>
+        <div style="flex:1; min-width:88px; background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:12px; text-align:center; font-weight:700; font-size:12.5px; color:var(--ink);">AI synthesis</div>
+        <div style="display:flex; align-items:center; color:var(--faint); font-size:17px; padding:0 2px;">→</div>
+        <div style="flex:1; min-width:118px; background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:12px; text-align:center; font-weight:700; font-size:12.5px; color:var(--ink);">~200-page brief<span style="display:block; font-weight:400; font-size:10.5px; color:var(--muted); margin-top:4px;">demand · SoS · personas · messaging</span></div>
+        <div style="display:flex; align-items:center; color:var(--faint); font-size:17px; padding:0 2px;">→</div>
+        <div style="flex:1; min-width:118px; background:var(--accent-soft); border:1px solid #d8d9fb; border-radius:10px; padding:12px; text-align:center; font-weight:700; font-size:12.5px; color:var(--indigo-d);">Strategy &amp; creative<span style="display:block; font-weight:400; font-size:10.5px; color:var(--indigo); margin-top:4px;">pointed at the leverage</span></div>
+      </div>
+
+      <div class="result"><span class="big">Agency-wide</span><span class="desc">It didn't stay on my accounts. It became the agency's <em>strategic standard</em>, and the team built it into a coaching program that trains other strategists to run it. It now runs across dozens of companies.</span></div>
+
+      <div class="mini-h">What every brief covers</div>
+      <div class="method-grid">
+        <div class="step"><b>Category &amp; demand</b><span>Is the category growing or contracting? How many people are searching, and for what?</span></div>
+        <div class="step"><b>Share of search</b><span>Mindshare vs. competitors, the leading indicator of market share.</span></div>
+        <div class="step"><b>Audience &amp; VoC</b><span>Who decides, how they decide, and the exact language they use.</span></div>
+        <div class="step"><b>Competitive messaging map</b><span>Where rivals are crowded, and the white space to own.</span></div>
+      </div>
+      <div style="margin-top:12px;">
+        <span class="pill">200-page intelligence briefs</span>
+        <span class="pill">Share-of-search tracking</span>
+        <span class="pill">Category demand modeling</span>
+        <span class="pill">Persona &amp; VoC synthesis</span>
+      </div>
+      <p style="color:var(--faint); font-size:13px; margin-top:16px; margin-bottom:0;">Happy to walk through a full (anonymized) brief on the call.</p>
+    </div>
+  </section>
+
+  <footer>
+    Derrick Kwa &nbsp;·&nbsp; suigeneris@derrickkwa.com &nbsp;·&nbsp; +65 8374 8727 &nbsp;·&nbsp; derrickkwa.com
+  </footer>
+
+</div>
+
+<script>
+  function show(id){
+    document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active', p.id===id);});
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active', t.dataset.tab===id);});
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click', function(){show(t.dataset.tab);});});
+  document.querySelectorAll('.goto').forEach(function(g){g.addEventListener('click', function(){show(g.dataset.goto);});});
+</script>
+</body>
+</html>
